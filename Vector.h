@@ -137,7 +137,6 @@ public:
 	std::complex<float> operator* (const Vector<std::complex<float>>& v) const
 	{
 		if (v.size != size) throw "Vectors aren't equal\n";
-		Vector<std::complex<float>> mul(v);
 		std::complex<float> result = 0;
 		for (size_t i = 0; i < size; i++)
 			result += std::complex<float>(data[i].real() * v.data[i].real(), (-1) * data[i].imag() * v.data[i].imag());
@@ -147,7 +146,6 @@ public:
 	std::complex<double> operator* (const Vector<std::complex<double>>& v) const
 	{
 		if (v.size != size) throw "Vectors aren't equal\n";
-		Vector<std::complex<double>> mul(v);
 		std::complex<double> result = 0;
 		for (size_t i = 0; i < size; i++)
 			result += std::complex<double>(data[i].real() * v.data[i].real(), (-1) * data[i].imag() * v.data[i].imag());
