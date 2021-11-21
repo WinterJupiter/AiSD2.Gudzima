@@ -52,7 +52,7 @@ public:
 		return size;
 	}
 
-	double operator[] (const size_t index) const
+	T operator[] (const size_t index) const
 	{
 		if ((index > size) || (index < 0)) throw ("Invalid index");
 		return data[index];
@@ -86,13 +86,14 @@ public:
 		return sub;
 	}
 
-	Vector<T> operator* (const Vector<T>& v)
+	T operator* (const Vector<T>& v)
 	{
 		if (v.size != size) throw "Vectors aren't equal\n";
 		Vector<T> mul(v);
+		T result = 0;
 		for (int i = 0; i < size; i++)
-			mul.data[i] *= data[i];
-		return mul;
+			result += mul.data[i] * data[i];
+		return result;
 	}
 
 	Vector<T> operator*(const T a)
@@ -109,7 +110,7 @@ public:
 
 	Vector<T> operator/ (const T a)
 	{
-		if (a == 0) throw ("Divide to 0!");
+		if (a == T(0)) throw ("Divide to 0!");
 		Vector<T> div(*this);
 		for (int i = 0; i < size; i++)
 			div.data[i] /= a;
@@ -122,15 +123,8 @@ public:
 		delete[] data;
 	}
 
-	friend std::istream& operator>> (std::istream& is, Vector<T>& v)
-	{
-		std::cout << "\nSize: ";
-		is >> v.size;
-		v.data = new T[v.size];
-		for (int i = 0; i < v.size; i++)
-			is >> v.data[i];
-		return is;
-	}
+	template<class T>
+	friend std::istream& operator>> (std::istream& is, Vector<T>& v);
 
 	friend std::ostream& operator<< (std::ostream& os, const Vector<T>& v)
 	{
@@ -139,36 +133,74 @@ public:
 			os << i + 1 << ": " << v[i] << std::endl;
 		return os;
 	}
-	
-	//Vector<std::complex<float>> operator*(const float a)
-	//{
-	//	Vector<std::complex<float>> mul1(*this), mul2(*this);
-	//	for (int i = 0; i < size; i++)
-	//	{
-	//		mul1.data[i] = a * mul1.data[i];
-	//		mul2.data[i] *= a;
-	//		if (mul1.data[i] != mul2.data[i]) throw "Not commutative\n";
-	//	}
-	//	return mul1;
-	//}
 
-	//Vector<std::complex<float>> operator* (const Vector<std::complex<float>>& v)
-	//{
-	//	if (v.size != size) throw "Vectors aren't equal\n";
-	//	Vector<std::complex<float>> mul(v);
-	//	Vector<std::complex<float>> result;
-	//	for (int i = 0; i < size; i++)
-	//		result += mul.data[i] * data[i];
-	//	return result;
-	//}
+	std::complex<float> operator* (const Vector<std::complex<float>>& v) const
+	{
+		if (v.size != size) throw "Vectors aren't equal\n";
+		Vector<std::complex<float>> mul(v);
+		std::complex<float> result = 0;
+		for (size_t i = 0; i < size; i++)
+			result += std::complex<float>(data[i].real() * v.data[i].real(), (-1) * data[i].imag() * v.data[i].imag());
+		return result;
+	}
 
-	//Vector<std::complex<double>> operator* (const Vector<std::complex<double>>& v)
-	//{
-	//	if (v.size != size) throw "Vectors aren't equal\n";
-	//	Vector<std::complex<double>> mul(v);
-	//	Vector<std::complex<double>> result;
-	//	for (int i = 0; i < size; i++)
-	//		result += mul.data[i] * data[i];
-	//	return result;
-	//}
+	std::complex<double> operator* (const Vector<std::complex<double>>& v) const
+	{
+		if (v.size != size) throw "Vectors aren't equal\n";
+		Vector<std::complex<double>> mul(v);
+		std::complex<double> result = 0;
+		for (size_t i = 0; i < size; i++)
+			result += std::complex<double>(data[i].real() * v.data[i].real(), (-1) * data[i].imag() * v.data[i].imag());
+		return result;
+	}
+
 };
+
+template<class T>
+std::istream& operator>> (std::istream& is, Vector<T>& v)
+{
+	std::cout << "\nSize: ";
+	is >> v.size;
+	v.data = new T[v.size];
+	for (int i = 0; i < v.size; i++)
+		is >> v.data[i];
+	return is;
+}
+
+template<>
+std::istream& operator>> (std::istream& is, Vector<std::complex<double>>& v)
+{
+	std::cout << "\nSize: ";
+	is >> v.size;
+	v.data = new std::complex<double>[v.size];
+	for (int i = 0; i < v.size; i++)
+	{
+		double real = 0;
+		double imag = 0;
+		std::cout << "\nReal part: ";
+		is >> real;
+		std::cout << "\nImag part: ";
+		is >> imag;
+		v.data[i] = std::complex<double>(real, imag);
+	}
+	return is;
+}
+
+template<>
+std::istream& operator>> (std::istream& is, Vector<std::complex<float>>& v)
+{
+	std::cout << "\nSize: ";
+	is >> v.size;
+	v.data = new std::complex<float>[v.size];
+	for (int i = 0; i < v.size; i++)
+	{
+		double real = 0;
+		double imag = 0;
+		std::cout << "\nReal part: ";
+		is >> real;
+		std::cout << "\nImag part: ";
+		is >> imag;
+		v.data[i] = std::complex<float>(real, imag);
+	}
+	return is;
+}

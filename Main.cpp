@@ -52,6 +52,31 @@ int menu3()
 	}
 }
 
+std::complex<float> InComplex1()
+{
+	std::complex<float> value = 0;
+	float real = 0;
+	float imag = 0;
+	std::cout << "\nReal part: ";
+	std::cin >> real;
+	std::cout << "\nImag part: ";
+	std::cin >> imag;
+	value = std::complex<float>(real, imag);
+	return value;
+}
+
+std::complex<double> InComplex2()
+{
+	std::complex<double> value = 0;
+	double real = 0;
+	double imag = 0;
+	std::cout << "\nReal part: ";
+	std::cin >> real;
+	std::cout << "\nImag part: ";
+	std::cin >> imag;
+	value = std::complex<double>(real, imag);
+	return value;
+}
 
 void Int()
 {
@@ -167,7 +192,7 @@ void Int()
 				}
 				if (n == 3)
 				{
-					Vector<int> mul;
+					int mul;
 					std::cout << "Multiplication:\n" << std::endl;
 					try
 					{
@@ -236,7 +261,6 @@ void Int()
 					{
 						std::cout << err << std::endl;
 					}
-
 					std::cout << mul2 << std::endl;
 					system("pause");
 				}
@@ -338,7 +362,6 @@ void Double()
 					{
 						std::cout << err << std::endl;
 					}
-
 					std::cout << add << std::endl;
 					system("pause");
 				}
@@ -360,7 +383,7 @@ void Double()
 				}
 				if (n == 3)
 				{
-					Vector<double> mul;
+					double mul;
 					std::cout << "Multiplication:\n" << std::endl;
 					try
 					{
@@ -429,7 +452,6 @@ void Double()
 					{
 						std::cout << err << std::endl;
 					}
-
 					std::cout << mul2 << std::endl;
 					system("pause");
 				}
@@ -439,198 +461,196 @@ void Double()
 	}
 }
 
-//void ComplexFloat()
-//{
-//	Vector<std::complex<float>> first, second;
-//	std::cout << "Input first vector: ";
-//	std::cin >> first;
-//	std::cout << "Input second vector: ";
-//	std::cin >> second;
-//	std::cout << std::endl << std::endl;
-//	while (true)
-//	{
-//		system("cls");
-//		int m = menu1();
-//		if (m == 1)
-//		{
-//			while (true)
-//			{
-//				system("cls");
-//				std::cout << "First vector: ";
-//				std::cout << first << std::endl;
-//				int n = menu2();
-//				if (n == 3) break;
-//				if (n == 1)
-//				{
-//					size_t index;
-//					double value;
-//					std::cout << "Which element: ";
-//					std::cin >> index;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					first.Change(index, value);
-//				}
-//				if (n == 2)
-//				{
-//					double value;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					first.Add(value);
-//				}
-//			}
-//		}
-//		if (m == 2)
-//		{
-//			while (true)
-//			{
-//				system("cls");
-//				std::cout << "Second vector: ";
-//				std::cout << second << std::endl;
-//				int n = menu2();
-//				if (n == 3) break;
-//				if (n == 1)
-//				{
-//					size_t index;
-//					double value;
-//					std::cout << "Which element: ";
-//					std::cin >> index;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					second.Change(index, value);
-//				}
-//				if (n == 2)
-//				{
-//					double value;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					second.Add(value);
-//				}
-//			}
-//		}
-//		if (m == 3)
-//		{
-//			while (true)
-//			{
-//				system("cls");
-//				std::cout << "First vector: ";
-//				std::cout << first << std::endl;
-//				std::cout << "Second vector: ";
-//				std::cout << second << std::endl;
-//				int n = menu3();
-//				if (n == 6) break;
-//				if (n == 1)
-//				{
-//					Vector<std::complex<float>> add;
-//					std::cout << "Addition:\n" << std::endl;
-//					try
-//					{
-//						add = first + second;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//
-//					std::cout << add << std::endl;
-//					system("pause");
-//				}
-//				if (n == 2)
-//				{
-//					Vector<std::complex<float>> sub;
-//					std::cout << "Subtraction:\n" << std::endl;
-//					try
-//					{
-//						sub = first - second;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//					std::cout << sub << std::endl;
-//					system("pause");
-//				}
-//				if (n == 3)
-//				{
-//					Vector<std::complex<float>> mul;
-//					std::cout << "Multiplication:\n" << std::endl;
-//					try
-//					{
-//						mul = first * second;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//					std::cout << mul << std::endl;
-//					system("pause");
-//				}
-//				if (n == 4)
-//				{
-//					Vector<std::complex<float>> div1, div2;
-//					std::cout << "Division:\n" << std::endl;
-//					double value;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					try
-//					{
-//						div1 = first / value;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//					std::cout << div1 << std::endl;
-//					try
-//					{
-//						div2 = second / value;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//					std::cout << div2 << std::endl;
-//					system("pause");
-//				}
-//				if (n == 5)
-//				{
-//					Vector<std::complex<float>> mul1, mul2;
-//					std::cout << "Multiplication by const:\n" << std::endl;
-//					float value;
-//					std::cout << "Enter a new value: ";
-//					std::cin >> value;
-//					try
-//					{
-//						mul1 = first * value;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//					std::cout << mul1 << std::endl;
-//					try
-//					{
-//						mul2 = second * value;
-//						std::cin.get();
-//					}
-//					catch (const char* err)
-//					{
-//						std::cout << err << std::endl;
-//					}
-//
-//					std::cout << mul2 << std::endl;
-//					system("pause");
-//				}
-//			}
-//		}
-//		if (m == 4) break;
-//	}
-//}
+void ComplexFloat()
+{
+	Vector<std::complex<float>> first, second;
+	std::cout << "Input first vector: ";
+	std::cin >> first;
+	std::cout << "Input second vector: ";
+	std::cin >> second;
+	std::cout << std::endl << std::endl;
+	while (true)
+	{
+		system("cls");
+		int m = menu1();
+		if (m == 1)
+		{
+			while (true)
+			{
+				system("cls");
+				std::cout << "First vector: ";
+				std::cout << first << std::endl;
+				int n = menu2();
+				if (n == 3) break;
+				if (n == 1)
+				{
+					size_t index;
+					std::complex<float> value;
+					std::cout << "Which element: ";
+					std::cin >> index;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();
+					first.Change(index, value);
+				}
+				if (n == 2)
+				{
+					std::complex<float> value;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();
+					first.Add(value);
+				}
+			}
+		}
+		if (m == 2)
+		{
+			while (true)
+			{
+				system("cls");
+				std::cout << "Second vector: ";
+				std::cout << second << std::endl;
+				int n = menu2();
+				if (n == 3) break;
+				if (n == 1)
+				{
+					size_t index;
+					std::complex<float> value;
+					std::cout << "Which element: ";
+					std::cin >> index;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();
+					second.Change(index, value);
+				}
+				if (n == 2)
+				{
+					std::complex<float> value;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();
+					second.Add(value);
+				}
+			}
+		}
+		if (m == 3)
+		{
+			while (true)
+			{
+				system("cls");
+				std::cout << "First vector: ";
+				std::cout << first << std::endl;
+				std::cout << "Second vector: ";
+				std::cout << second << std::endl;
+				int n = menu3();
+				if (n == 6) break;
+				if (n == 1)
+				{
+					Vector<std::complex<float>> add;
+					std::cout << "Addition:\n" << std::endl;
+					try
+					{
+						add = first + second;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << add << std::endl;
+					system("pause");
+				}
+				if (n == 2)
+				{
+					Vector<std::complex<float>> sub;
+					std::cout << "Subtraction:\n" << std::endl;
+					try
+					{
+						sub = first - second;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << sub << std::endl;
+					system("pause");
+				}
+				if (n == 3)
+				{
+					std::complex<float> mul;
+					std::cout << "Multiplication:\n" << std::endl;
+					try
+					{
+						mul = first * second;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << mul << std::endl;
+					system("pause");
+				}
+				if (n == 4)
+				{
+					Vector<std::complex<float>> div1, div2;
+					std::cout << "Division:\n" << std::endl;
+					std::complex<float> value;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();
+					try
+					{
+						div1 = first / value;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << div1 << std::endl;
+					try
+					{
+						div2 = second / value;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << div2 << std::endl;
+					system("pause");
+				}
+				if (n == 5)
+				{
+					Vector<std::complex<float>> mul1, mul2;
+					std::cout << "Multiplication by const:\n" << std::endl;
+					std::complex<float> value;
+					std::cout << "Enter a new value: ";
+					value = InComplex1();;
+					try
+					{
+						mul1 = first * value;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << mul1 << std::endl;
+					try
+					{
+						mul2 = second * value;
+						std::cin.get();
+					}
+					catch (const char* err)
+					{
+						std::cout << err << std::endl;
+					}
+					std::cout << mul2 << std::endl;
+					system("pause");
+				}
+			}
+		}
+		if (m == 4) break;
+	}
+}
 
 void ComplexDouble()
 {
@@ -656,18 +676,18 @@ void ComplexDouble()
 				if (n == 1)
 				{
 					size_t index;
-					double value;
+					std::complex<double> value;
 					std::cout << "Which element: ";
 					std::cin >> index;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value = InComplex2();
 					first.Change(index, value);
 				}
 				if (n == 2)
 				{
-					double value;
+					std::complex<double> value;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value = InComplex2();
 					first.Add(value);
 				}
 			}
@@ -684,18 +704,18 @@ void ComplexDouble()
 				if (n == 1)
 				{
 					size_t index;
-					double value;
+					std::complex<double> value;
 					std::cout << "Which element: ";
 					std::cin >> index;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value = InComplex2();
 					second.Change(index, value);
 				}
 				if (n == 2)
 				{
-					double value;
+					std::complex<double> value;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value = InComplex2();
 					second.Add(value);
 				}
 			}
@@ -746,7 +766,7 @@ void ComplexDouble()
 				}
 				if (n == 3)
 				{
-					Vector<std::complex<double>> mul;
+					std::complex<double> mul;
 					std::cout << "Multiplication:\n" << std::endl;
 					try
 					{
@@ -764,9 +784,9 @@ void ComplexDouble()
 				{
 					Vector<std::complex<double>> div1, div2;
 					std::cout << "Division:\n" << std::endl;
-					double value;
+					std::complex<double> value;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value=InComplex2();
 					try
 					{
 						div1 = first / value;
@@ -793,9 +813,9 @@ void ComplexDouble()
 				{
 					Vector<std::complex<double>> mul1, mul2;
 					std::cout << "Multiplication by const:\n" << std::endl;
-					double value;
+					std::complex<double> value;
 					std::cout << "Enter a new value: ";
-					std::cin >> value;
+					value = InComplex2();
 					try
 					{
 						mul1 = first * value;
@@ -815,7 +835,6 @@ void ComplexDouble()
 					{
 						std::cout << err << std::endl;
 					}
-
 					std::cout << mul2 << std::endl;
 					system("pause");
 				}
@@ -834,8 +853,8 @@ int main()
 		if (m == 5) break;
 		if (m == 1) Int();
 		if (m == 2) Double();
-//		if (m == 3) ComplexFloat();
-//		if (m == 4) ComplexDouble();
+		if (m == 3) ComplexFloat();
+		if (m == 4) ComplexDouble();
 	}
 	return 0;
 }
