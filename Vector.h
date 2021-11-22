@@ -192,8 +192,8 @@ std::istream& operator>> (std::istream& is, Vector<std::complex<float>>& v)
 	v.data = new std::complex<float>[v.size];
 	for (int i = 0; i < v.size; i++)
 	{
-		double real = 0;
-		double imag = 0;
+		float real = 0;
+		float imag = 0;
 		std::cout << "\nReal part: ";
 		is >> real;
 		std::cout << "\nImag part: ";
